@@ -1,0 +1,43 @@
+
+dist: trusty
+sudo: false
+
+language: node_js
+node_js:
+  - '12'
+
+os:
+  - linux
+
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
+cache:
+  directories:
+    - ./node_modules
+
+install:
+  - npm install
+   
+env:
+  global:
+    - CC_TEST_REPORTER_ID=dc9b5a3bbc8cdb4314aeb8fadead333f5d8a52088ba1726d86e40be91c712083
+
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
+# script:
+#   - ng test --code-coverage --no-progress --browsers=ChromeHeadlessNoSandbox                         
+
+after_script:
+  - ./cc-test-reporter format-coverage -t lcov ./coverage/lcov.info
+  - ./cc-test-reporter upload-coverage
+
+
+

@@ -1,0 +1,192 @@
+<!-- Topbar 1 -->
+
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top fixed-top" style="box-shadow: unset;">
+
+  <!-- Sidebar Toggle (Topbar) -->
+  <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3" style="display:none!important;">
+    <i class="fa fa-bars"></i>
+  </button>
+
+  <!-- Topbar Search -->
+  <a class="navbar-brand" href="#">
+    <img src="./assets/svgs/avyantra-logo.svg" alt="avyantra" class="w-75 py-2">
+  </a>
+
+  <!-- Topbar Navbar -->
+  <ul class="navbar-nav ml-auto">
+
+    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+    <li class="nav-item dropdown no-arrow d-sm-none">
+      <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-search fa-fw"></i>
+      </a>
+      <!-- Dropdown - Messages -->
+      <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+        <form class="form-inline mr-auto w-100 navbar-search">
+          <div class="input-group">
+            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+              aria-label="Search" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="button">
+                <i class="fas fa-search fa-sm"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </li>
+
+    <!-- Nav Item - Messages -->
+    <li class="nav-item dropdown no-arrow mx-1">
+      <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-bell fa-fw"></i>
+        <!-- Counter - Messages -->
+        <span class="badge badge-danger badge-counter">4+</span>
+      </a>
+      <!-- Dropdown - Messages -->
+      <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+        aria-labelledby="messagesDropdown">
+        <h6 class="dropdown-header">
+          Message Center
+        </h6>
+        <a class="dropdown-item d-flex align-items-center" href="#">
+          <div class="dropdown-list-image mr-3">
+            <img class="rounded-circle"
+              src="https://us.123rf.com/450wm/kadettmann/kadettmann1606/kadettmann160600106/60861454-passport-photo-of-a-young-arabic-woman.jpg?ver=6"
+              alt="">
+            <div class="status-indicator bg-success"></div>
+          </div>
+          <div class="font-weight-bold">
+            <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.
+            </div>
+            <div class="small text-gray-500">Anshita Sharma · 58m</div>
+          </div>
+        </a>
+        <a class="dropdown-item d-flex align-items-center" href="#">
+          <div class="dropdown-list-image mr-3">
+            <img class="rounded-circle" src="https://ct.yimg.com/cy/4588/38079205900_9d2a55_128sq.jpg" alt="">
+            <div class="status-indicator"></div>
+          </div>
+          <div>
+            <div class="text-truncate">BMRN-45214 Report is ready.</div>
+            <div class="small text-gray-500">Rajesh Gupta · 1d</div>
+          </div>
+        </a>
+        <a class="dropdown-item d-flex align-items-center" href="#">
+          <div class="dropdown-list-image mr-3">
+            <img class="rounded-circle"
+              src="https://lh3.googleusercontent.com/a-/AAuE7mCmcDEz4KAJ84yx2A6a11Rmmw-UEM78iAyoxSoUIA?sz=64" alt="">
+            <div class="status-indicator bg-warning"></div>
+          </div>
+          <div>
+            <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep
+              up the good work!</div>
+            <div class="small text-gray-500">Mahesh Kumar · 2d</div>
+          </div>
+        </a>
+        <a class="dropdown-item d-flex align-items-center" href="#">
+          <div class="dropdown-list-image mr-3">
+            <img class="rounded-circle"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbe3eBX9pFuOlp_q6ytG7ijHbAxX7a1fkn75jl_5N5dYPjNs3u"
+              alt="">
+            <div class="status-indicator bg-success"></div>
+          </div>
+          <div>
+            <div class="text-truncate">BMRN-21544 report detail.</div>
+            <div class="small text-gray-500">Monika Goyal</div>
+          </div>
+        </a>
+        <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+      </div>
+    </li>
+
+    <div class="topbar-divider d-none d-sm-block"></div>
+
+    <!-- Nav Item - User Information -->
+    <li class="nav-item dropdown no-arrow">
+      <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        <span  *ngIf="loginHospital['user_type']=='Hospital'" class="mr-2 d-none d-lg-inline text-gray-600 small">{{hospitalName}}</span>
+        <span *ngIf="loginHospital['user_type']=='Hospital Branch' || loginHospital['user_type']=='Hospital Staff'" class="mr-2 d-none d-lg-inline text-gray-600 small">{{hospitalBranchName}}</span>
+        <span *ngIf="loginHospital['user_type']=='Referral Doctor'" class="mr-2 d-none d-lg-inline text-gray-600 small">{{referralDoctorName}}</span>
+        <span class="btn btn-warning btn-circle btn-sm"><i class="fa fa-hospital text-gray-900 ml-2 mr-2"></i> </span>
+        <!--<img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60"> -->
+      </a>
+      <!-- Dropdown - User Information -->
+      <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+        <a class="dropdown-item" href="#">
+          <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+          Profile
+        </a>
+        <a class="dropdown-item" href="#">
+          <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+          Settings
+        </a>
+        <a class="dropdown-item" href="#">
+          <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+          Activity Log
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal"  (click)="logout()">
+          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+          Logout
+        </a>
+      </div>
+    </li>
+
+  </ul>
+</nav>
+
+<!-- Topbar 2 -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-lg2 bg-white mt-60 blue-btm-bdr"
+  style="z-index: 1029;">
+
+  <div class="container-fluid pl-0 pr-0">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item" [ngClass]="{'active': selectedTab==='dashboard'}" *ngIf="showPermission('Dashboard')" data-toggle="collapse" [attr.data-target]="toggleCollapse()">
+    <a class="nav-link" routerLink="/admin/dashboard" (click)="activeTab('dashboard')">Dashboard <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item" [ngClass]="{'active': selectedTab==='dashboard'}" *ngIf="showPermission('DashboardStaff')" data-toggle="collapse" [attr.data-target]="toggleCollapse()">
+      <a class="nav-link" routerLink="/admin/hospital-staff" (click)="activeTab('dashboard')">Dashboard <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item" [ngClass]="{'active': selectedTab==='dashboardReferra'}" *ngIf="showPermission('DashboardRD')" data-toggle="collapse" [attr.data-target]="toggleCollapse()">
+      <a class="nav-link" routerLink="/admin/referral-doctors" (click)="activeTab('dashboardReferral')">Dashboard <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item" [ngClass]="{'active': selectedTab==='addbranch'}" *ngIf="showPermission('AddBranch')" data-toggle="collapse" [attr.data-target]="toggleCollapse()">
+    <a class="nav-link" routerLink="/admin/addbranch" (click)="activeTab('addbranch')">Add Branch</a>
+    </li>
+    <li class="nav-item" [ngClass]="{'active': selectedTab==='hospitalstaff'}" *ngIf="showPermission('HospitalStaff')" data-toggle="collapse" [attr.data-target]="toggleCollapse()">
+    <a class="nav-link" routerLink="/admin/staff" (click)="activeTab('hospitalstaff')" >Hospital Staff</a>
+    </li>
+    <li class="nav-item" [ngClass]="{'active': selectedTab==='medicalrecords'}" *ngIf="showPermission('MedicalRecords')" data-toggle="collapse" [attr.data-target]="toggleCollapse()">
+    <a class="nav-link" routerLink="/admin/medical-records" (click)="activeTab('medicalrecords')">Medical Records</a>
+    </li>
+    <li class="nav-item" [ngClass]="{'active': selectedTab==='messagecenter'}" *ngIf="showPermission('MessageCenter')" data-toggle="collapse" [attr.data-target]="toggleCollapse()">
+    <a class="nav-link" (click)="activeTab('messagecenter')">Message Center</a>
+    </li>
+    <li class="nav-item" [ngClass]="{'active': selectedTab==='myprofile'}" *ngIf="showPermission('MyProfile')" data-toggle="collapse" [attr.data-target]="toggleCollapse()">
+    <a class="nav-link" routerLink="/admin/my-profile" (click)="activeTab('myprofile');changeProfile();" >My Profile</a>
+    </li>
+    <li class="nav-item d-none" [ngClass]="{'active': selectedTab==='subscription'}" data-toggle="collapse" [attr.data-target]="toggleCollapse()">
+    <a class="nav-link" (click)="activeTab('subscription')" >Subscription</a>
+    </li>
+     <li class="nav-item" [ngClass]="{'active': selectedTab==='settings'}" *ngIf="showPermission('Settings')" data-toggle="collapse" [attr.data-target]="toggleCollapse()">
+    <a class="nav-link" routerLink="/admin/setting" (click)="activeTab('settings')" >Settings</a>
+    </li>
+    <li class="nav-item" [ngClass]="{'active': selectedTab==='hospitalConnect'}" *ngIf="showPermission('hospitalConnect')" data-toggle="collapse" [attr.data-target]="toggleCollapse()">
+      <a class="nav-link" routerLink="/admin/hospital-connect" (click)="activeTab('hospitalConnect')" >Hospital Connect</a>
+      </li>
+  </ul>
+  </div>
+  
+  </div>
+</nav>

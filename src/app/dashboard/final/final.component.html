@@ -1,0 +1,672 @@
+<div class="">
+  <div id="formContent">
+    <div class="container">
+     <!-- <button class="btn create-btn mr-2 mt-0 text-white" (click)="open(content,{})"><i class="fas fa-plus-circle"></i> Create New Reading </button> -->
+     <div class="row">
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-4">
+        <h5 *ngIf="readingDataService.reading" class="text-center">Reading: {{readingDataService.reading}} </h5>
+      </div>
+      <div class="col-md-4">
+        <div class="float-right" *ngIf="getMedicalRecordNumber">
+          <h5 class="mb-0"> BMRN: {{getMedicalRecordNumber}}</h5>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <ng-container *ngIf="responseArray?.length>0">
+      <div class="form-css scroll" *ngIf="!isFinalEdit">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card ml-2">
+              <div class="card-body div-shadow">
+                <h5 class="">
+                  {{responseArray[0]['createdAt'] | date:'dd MMMM yyyy, h:mm a' || 'Loading...'}}
+                  <button class="btn edit-btn float-right">
+                    <mat-icon (click)="open(content, responseArray[0])">edit</mat-icon>
+                  </button>
+                </h5>
+
+                <div class="row">
+                  <div class="col-12 col-lg-6">
+                     <div class="table-responsive p-3">
+                      <table class="table  table-borderless mb-0">
+                        <tbody>
+                          <tr class="border-bottom">
+                            <td class="tb-label">Discharge Date</td>
+                            <td class="tb-value text-right">{{responseArray[0]['baby_discharge_date']}}</td>
+                          </tr>     
+                          <tr class="border-bottom">
+                            <td class="tb-label">Days of Stay in Hospital</td>
+                            <td class="tb-value text-right">{{responseArray[0]['days_of_stay_in_hospital']}}</td>
+                          </tr>
+                          <tr class="">
+                            <td class="tb-label">Diagnosis (Sepsis)</td>
+                            <td class="tb-value text-right">{{responseArray[0]['final_diagnosis_sepsis']}} </td>
+                          </tr>
+                          <tr class="">
+                            <td class="tb-label">Diagnosis (RDS)</td>
+                            <td class="tb-value text-right">{{responseArray[0]['final_diagnosis_rds']}}</td>
+                          </tr>
+                          <tr class="">
+                            <td class="tb-label">Diagnosis (TTNB)</td>
+                            <td class="tb-value text-right">{{responseArray[0]['final_diagnosis_ttnb']}}</td>
+                          </tr>
+                          <tr class="">
+                            <td class="tb-label">Diagnosis (Jaundice)</td>
+                            <td class="tb-value text-right">{{responseArray[0]['final_diagnosis_jaundice']}}</td>
+                          </tr>
+                          <tr class="">
+                            <td class="tb-label">Diagnosis (LBW)</td>
+                            <td class="tb-value text-right">{{responseArray[0]['final_diagnosis_lbw']}}</td>
+                          </tr>
+                          <tr class="">
+                            <td class="tb-label">Diagnosis (LGA)</td>
+                            <td class="tb-value text-right">{{responseArray[0]['final_diagnosis_lga']}}</td>
+                          </tr>
+                          <tr class="">
+                            <td class="tb-label">Diagnosis (AGA)</td>
+                            <td class="tb-value text-right">{{responseArray[0]['final_diagnosis_aga']}}</td>
+                          </tr>
+                          <tr class="">
+                            <td class="tb-label">Diagnosis (SGA)</td>
+                            <td class="tb-value text-right">{{responseArray[0]['final_diagnosis_sga']}}</td>
+                          </tr>
+                          <tr class="border-bottom">
+                            <td class="tb-label">Diagnosis (Anemia)</td>
+                            <td class="tb-value text-right">{{responseArray[0]['final_diagnosis_anemia']}}</td>
+                          </tr> 
+                        </tbody>
+                      </table>
+                     </div>
+                  </div>
+                  
+                  <div class="col-12 col-lg-6">
+                     <div class="table-responsive p-3">
+                      <table class="table  table-borderless mb-0">
+                        <tbody>    
+                          <tr class="border-bottom">
+                            <td class="tb-label">Diagnosis (Dextrocardia)</td>
+                            <td class="tb-value text-right">{{responseArray[0]['final_diagnosis_dextochordia']}}</td>
+                          </tr>
+                          <tr class="border-bottom">
+                            <td class="tb-label">Diagnosis (Hypoglycemia)</td>
+                            <td class="tb-value text-right">{{responseArray[0]['final_diagnosis_hypoglycemia']}} </td>
+                          </tr>
+                          <tr class="border-bottom">
+                            <td class="tb-label">Diagnosis (Hypocalcemia)</td>
+                            <td class="tb-value text-right">{{responseArray[0]['final_diagnosis_hypocalcemia']}}</td>
+                          </tr>
+                          <tr class="border-bottom">
+                            <td class="tb-label">Diagnosis (Gastroenteritis)</td>
+                            <td class="tb-value text-right">{{responseArray[0]['final_diagnosis_gastroenteritis']}}</td>
+                          </tr>
+                          <tr class="border-bottom">
+                            <td class="tb-label">Diagnosis (Perinatal Respiratory Depression)</td>
+                            <td class="tb-value text-right">{{responseArray[0]['final_diagnosis_perinatal_respiratory_depression']}}</td>
+                          </tr>
+                          <tr class="border-bottom">
+                            <td class="tb-label">Diagnosis (Shock)</td>
+                            <td class="tb-value text-right">{{responseArray[0]['final_diagnosis_shock']}}</td>
+                          </tr>
+                          <tr class="border-bottom">
+                            <td class="tb-label">Diagnosis (Feeding Intolerence)</td>
+                            <td class="tb-value text-right">{{responseArray[0]['final_diagnosis_feeding_intolerence']}}</td>
+                          </tr>
+                          <tr class="border-bottom">
+                            <td class="tb-label">Diagnosis (EOS/LOS/NA)</td>
+                            <td class="tb-value text-right">{{responseArray[0]['final_diagnosis_eos_los']}}</td>
+                          </tr>
+                          <tr class="border-bottom">
+                            <td class="tb-label">Diagnosis (Other)</td>
+                            <td class="tb-value text-right">{{responseArray[0]['final_diagnosis_other']}}</td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+                     </div>
+                  </div>
+              </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <div class="m-3 div-shadow" *ngIf="responseArray?.length<1 || isFinalEdit">
+      <form [formGroup]="babyFinalForm" class="form-css card" (ngSubmit)="finalFormSubmit()" novalidate>
+        <div class="modal-header custom-modal-header add-btn">
+          <!-- <button type="submit" class="btn btn-primary">Save
+          </button> -->
+          <div class="custom-modal-title">FINAL DIAGNOSIS</div>
+        </div>
+        <div class="modal-body scroll">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="record_type">Record Id</label>
+                <input type="text" readonly [value]="id" class="form-control" name="" id="">
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="baby_discharge_date">Discharge Date</label>
+                <div class="float-right">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" id="baby_disch_date_radio"
+                        [checked]="this.chkBabyDischargeDate" (click)="onInputChange($event)" value="1"
+                        name="babyDischargeDate">Date
+                    </label>
+                  </div>
+                  <div class="form-check-inline mr-0">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" id="baby_disch_date_radio2"
+                        [checked]="!this.chkBabyDischargeDate" (click)="onInputChange($event)" value="2"
+                        name="babyDischargeDate">NA
+                    </label>
+                  </div>
+                </div>
+                <div class="input-group">
+                  <input type="text" (ngModelChange)="calculateDate()" class="form-control bg-white" readonly *ngIf="this.chkBabyDischargeDate"
+                    id="baby_discharge_date" formControlName="baby_discharge_date" bsDatepicker
+                    [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY',showWeekNumbers:false }" placeholder="e.g dd/mm/yyyy"
+                    min="0" autocomplete="off">
+                  <div class="input-group-append" *ngIf="this.chkBabyDischargeDate">
+                    <span class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                  </div>
+                  <input type="text" readonly class="abc" *ngIf="!this.chkBabyDischargeDate" class="form-control"
+                    formControlName="baby_discharge_date">
+
+                </div>
+                <div *ngIf="babyFinalForm.controls['baby_discharge_date'].invalid &&
+                (babyFinalForm.controls['baby_discharge_date'].dirty ||
+                babyFinalForm.controls['baby_discharge_date'].touched || submitted)" class="error-msg">
+                  <div *ngIf="babyFinalForm.controls['baby_discharge_date'].errors.required">
+                    This field is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="days_of_stay_in_hospital">Days of Stay in Hospital</label>
+
+                <div class="float-right">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" id="daysOfStayHospitalRadio"
+                        [checked]="this.chkDaysOfStayHospital" (click)="onInputChange($event)" value="1"
+                        name="daysOfStayHospital">Days
+                    </label>
+                  </div>
+                  <div class="form-check-inline mr-0">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" id="daysOfStayHospitalRadio2"
+                        [checked]="!this.chkDaysOfStayHospital" (click)="onInputChange($event)" value="2"
+                        name="daysOfStayHospital">NA
+                    </label>
+                  </div>
+                </div>
+
+                <div class="input-group">
+                  <input type="text" readonly *ngIf="this.chkDaysOfStayHospital" [dropSpecialCharacters]="false" mask="999"
+                    class="form-control" id="days_of_stay_in_hospital" formControlName="days_of_stay_in_hospital" min="0" autocomplete="off">
+
+                  <div class="input-group-append" *ngIf="this.chkDaysOfStayHospital">
+                    <span class="input-group-text">days</span>
+                  </div>
+                  <input type="text" readonly value="NA" *ngIf="!this.chkDaysOfStayHospital" class="form-control">
+                </div>
+                <div *ngIf="babyFinalForm.controls['days_of_stay_in_hospital'].invalid &&
+                    (babyFinalForm.controls['days_of_stay_in_hospital'].dirty ||
+                    babyFinalForm.controls['days_of_stay_in_hospital'].touched || submitted)" class="error-msg">
+                  <div *ngIf="babyFinalForm.controls['days_of_stay_in_hospital'].errors.required">
+                    This field is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="final_diagnosis_sepsis"> Diagnosis (Sepsis)</label>
+                <select class="form-control" name="final_diagnosis_sepsis" id="final_diagnosis_sepsis"
+                  formControlName="final_diagnosis_sepsis">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                  <option value="NA">NA</option>
+                </select>
+                <div *ngIf="babyFinalForm.controls['final_diagnosis_sepsis'].invalid &&
+                  (babyFinalForm.controls['final_diagnosis_sepsis'].dirty ||
+                  babyFinalForm.controls['final_diagnosis_sepsis'].touched || submitted)" class="error-msg">
+                  <div *ngIf="babyFinalForm.controls['final_diagnosis_sepsis'].errors.required">
+                    This field is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="final_diagnosis_rds"> Diagnosis (RDS)</label>
+                <select class="form-control" name="final_diagnosis_rds" id="final_diagnosis_rds"
+                  formControlName="final_diagnosis_rds">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                  <option value="NA">NA</option>
+                </select>
+                <div *ngIf="babyFinalForm.controls['final_diagnosis_rds'].invalid &&
+                  (babyFinalForm.controls['final_diagnosis_rds'].dirty ||
+                  babyFinalForm.controls['final_diagnosis_rds'].touched || submitted)" class="error-msg">
+                  <div *ngIf="babyFinalForm.controls['final_diagnosis_rds'].errors.required">
+                    This field is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="final_diagnosis_ttnb"> Diagnosis (TTNB)</label>
+                <select class="form-control" name="final_diagnosis_ttnb" id="final_diagnosis_ttnb"
+                  formControlName="final_diagnosis_ttnb">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                  <option value="NA">NA</option>
+                </select>
+                <div *ngIf="babyFinalForm.controls['final_diagnosis_ttnb'].invalid &&
+                  (babyFinalForm.controls['final_diagnosis_ttnb'].dirty ||
+                  babyFinalForm.controls['final_diagnosis_ttnb'].touched || submitted)" class="error-msg">
+                  <div *ngIf="babyFinalForm.controls['final_diagnosis_ttnb'].errors.required">
+                    This field is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="final_diagnosis_jaundice"> Diagnosis (Jaundice)</label>
+                <select class="form-control" name="final_diagnosis_jaundice" id="final_diagnosis_jaundice"
+                  formControlName="final_diagnosis_jaundice">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                  <option value="NA">NA</option>
+                </select>
+                <div *ngIf="babyFinalForm.controls['final_diagnosis_jaundice'].invalid &&
+                      (babyFinalForm.controls['final_diagnosis_jaundice'].dirty ||
+                      babyFinalForm.controls['final_diagnosis_jaundice'].touched || submitted)" class="error-msg">
+                  <div *ngIf="babyFinalForm.controls['final_diagnosis_jaundice'].errors.required">
+                    This field is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="final_diagnosis_lbw"> Diagnosis (LBW)</label>
+                <select class="form-control" name="final_diagnosis_lbw" id="final_diagnosis_lbw"
+                  formControlName="final_diagnosis_lbw">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                  <option value="NA">NA</option>
+                </select>
+                <div *ngIf="babyFinalForm.controls['final_diagnosis_lbw'].invalid &&
+                  (babyFinalForm.controls['final_diagnosis_lbw'].dirty ||
+                  babyFinalForm.controls['final_diagnosis_lbw'].touched || submitted)" class="error-msg">
+                  <div *ngIf="babyFinalForm.controls['final_diagnosis_lbw'].errors.required">
+                    This field is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="final_diagnosis_lga"> Diagnosis (LGA)</label>
+                <select class="form-control" name="final_diagnosis_lga" id="final_diagnosis_lga"
+                  formControlName="final_diagnosis_lga">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                  <option value="NA">NA</option>
+                </select>
+                <div *ngIf="babyFinalForm.controls['final_diagnosis_lga'].invalid &&
+                      (babyFinalForm.controls['final_diagnosis_lga'].dirty ||
+                      babyFinalForm.controls['final_diagnosis_lga'].touched || submitted)" class="error-msg">
+                  <div *ngIf="babyFinalForm.controls['final_diagnosis_lga'].errors.required">
+                    This field is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="final_diagnosis_aga"> Diagnosis (AGA)</label>
+                <select class="form-control" name="final_diagnosis_aga" id="final_diagnosis_aga"
+                  formControlName="final_diagnosis_aga">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                  <option value="NA">NA</option>
+                </select>
+                <div *ngIf="babyFinalForm.controls['final_diagnosis_aga'].invalid &&
+                    (babyFinalForm.controls['final_diagnosis_aga'].dirty ||
+                    babyFinalForm.controls['final_diagnosis_aga'].touched || submitted)" class="error-msg">
+                  <div *ngIf="babyFinalForm.controls['final_diagnosis_aga'].errors.required">
+                    This field is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="final_diagnosis_sga"> Diagnosis (SGA)</label>
+                <select class="form-control" name="final_diagnosis_sga" id="final_diagnosis_sga"
+                  formControlName="final_diagnosis_sga">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                  <option value="NA">NA</option>
+                </select>
+                <div *ngIf="babyFinalForm.controls['final_diagnosis_sga'].invalid &&
+                        (babyFinalForm.controls['final_diagnosis_sga'].dirty ||
+                        babyFinalForm.controls['final_diagnosis_sga'].touched || submitted)" class="error-msg">
+                  <div *ngIf="babyFinalForm.controls['final_diagnosis_sga'].errors.required">
+                    This field is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="final_diagnosis_anemia"> Diagnosis (Anemia)</label>
+                <select class="form-control" name="final_diagnosis_anemia" id="final_diagnosis_anemia"
+                  formControlName="final_diagnosis_anemia">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                  <option value="NA">NA</option>
+                </select>
+                <div *ngIf="babyFinalForm.controls['final_diagnosis_anemia'].invalid &&
+                        (babyFinalForm.controls['final_diagnosis_anemia'].dirty ||
+                        babyFinalForm.controls['final_diagnosis_anemia'].touched || submitted)" class="error-msg">
+                  <div *ngIf="babyFinalForm.controls['final_diagnosis_anemia'].errors.required">
+                    This field is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="final_diagnosis_dextochordia"> Diagnosis (Dextrocardia)</label>
+                <select class="form-control" name="final_diagnosis_dextochordia" id="final_diagnosis_dextochordia"
+                  formControlName="final_diagnosis_dextochordia">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                  <option value="NA">NA</option>
+                </select>
+                <div *ngIf="babyFinalForm.controls['final_diagnosis_dextochordia'].invalid &&
+                        (babyFinalForm.controls['final_diagnosis_dextochordia'].dirty ||
+                        babyFinalForm.controls['final_diagnosis_dextochordia'].touched || submitted)"
+                  class="error-msg">
+                  <div *ngIf="babyFinalForm.controls['final_diagnosis_dextochordia'].errors.required">
+                    This field is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="final_diagnosis_hypoglycemia"> Diagnosis (Hypoglycemia)</label>
+                <select class="form-control" name="final_diagnosis_hypoglycemia" id="final_diagnosis_hypoglycemia"
+                  formControlName="final_diagnosis_hypoglycemia">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                  <option value="NA">NA</option>
+                </select>
+                <div *ngIf="babyFinalForm.controls['final_diagnosis_hypoglycemia'].invalid &&
+                        (babyFinalForm.controls['final_diagnosis_hypoglycemia'].dirty ||
+                        babyFinalForm.controls['final_diagnosis_hypoglycemia'].touched || submitted)"
+                  class="error-msg">
+                  <div *ngIf="babyFinalForm.controls['final_diagnosis_hypoglycemia'].errors.required">
+                    This field is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="final_diagnosis_hypocalcemia"> Diagnosis (Hypocalcemia)</label>
+                <select class="form-control" name="final_diagnosis_hypocalcemia" id="final_diagnosis_hypocalcemia"
+                  formControlName="final_diagnosis_hypocalcemia">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                  <option value="NA">NA</option>
+                </select>
+                <div *ngIf="babyFinalForm.controls['final_diagnosis_hypocalcemia'].invalid &&
+                        (babyFinalForm.controls['final_diagnosis_hypocalcemia'].dirty ||
+                        babyFinalForm.controls['final_diagnosis_hypocalcemia'].touched || submitted)"
+                  class="error-msg">
+                  <div *ngIf="babyFinalForm.controls['final_diagnosis_hypocalcemia'].errors.required">
+                    This field is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="final_diagnosis_gastroenteritis"> Diagnosis (Gastroenteritis)</label>
+                <select class="form-control" name="final_diagnosis_gastroenteritis" id="final_diagnosis_gastroenteritis"
+                  formControlName="final_diagnosis_gastroenteritis">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                  <option value="NA">NA</option>
+                </select>
+                <div *ngIf="babyFinalForm.controls['final_diagnosis_gastroenteritis'].invalid &&
+                        (babyFinalForm.controls['final_diagnosis_gastroenteritis'].dirty ||
+                        babyFinalForm.controls['final_diagnosis_gastroenteritis'].touched || submitted)"
+                  class="error-msg">
+                  <div *ngIf="babyFinalForm.controls['final_diagnosis_gastroenteritis'].errors.required">
+                    This field is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="final_diagnosis_perinatal_respiratory_depression"> Diagnosis (Perinatal Respiratory
+                  Depression)</label>
+                <select class="form-control" name="final_diagnosis_perinatal_respiratory_depression"
+                  id="final_diagnosis_perinatal_respiratory_depression"
+                  formControlName="final_diagnosis_perinatal_respiratory_depression">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                  <option value="NA">NA</option>
+                </select>
+                <div
+                  *ngIf="babyFinalForm.controls['final_diagnosis_perinatal_respiratory_depression'].invalid &&
+                        (babyFinalForm.controls['final_diagnosis_perinatal_respiratory_depression'].dirty ||
+                        babyFinalForm.controls['final_diagnosis_perinatal_respiratory_depression'].touched || submitted)"
+                  class="error-msg">
+                  <div
+                    *ngIf="babyFinalForm.controls['final_diagnosis_perinatal_respiratory_depression'].errors.required">
+                    This field is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="final_diagnosis_shock"> Diagnosis (Shock)</label>
+                <select class="form-control" name="final_diagnosis_shock" id="final_diagnosis_shock"
+                  formControlName="final_diagnosis_shock">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                  <option value="NA">NA</option>
+                </select>
+                <div *ngIf="babyFinalForm.controls['final_diagnosis_shock'].invalid &&
+                        (babyFinalForm.controls['final_diagnosis_shock'].dirty ||
+                        babyFinalForm.controls['final_diagnosis_shock'].touched || submitted)" class="error-msg">
+                  <div *ngIf="babyFinalForm.controls['final_diagnosis_shock'].errors.required">
+                    This field is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="final_diagnosis_feeding_intolerence">Diagnosis (Feeding Intolerence)</label>
+                <select class="form-control" name="final_diagnosis_feeding_intolerence"
+                  id="final_diagnosis_feeding_intolerence" formControlName="final_diagnosis_feeding_intolerence">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                  <option value="NA">NA</option>
+                </select>
+                <div *ngIf="babyFinalForm.controls['final_diagnosis_feeding_intolerence'].invalid &&
+                        (babyFinalForm.controls['final_diagnosis_feeding_intolerence'].dirty ||
+                        babyFinalForm.controls['final_diagnosis_feeding_intolerence'].touched || submitted)"
+                  class="error-msg">
+                  <div *ngIf="babyFinalForm.controls['final_diagnosis_feeding_intolerence'].errors.required">
+                    This field is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="final_diagnosis_eos_los">Diagnosis (EOS/LOS/NA)</label>
+                <select class="form-control" name="final_diagnosis_eos_los" id="final_diagnosis_eos_los"
+                  formControlName="final_diagnosis_eos_los">
+                  <option value="EOS">EOS</option>
+                  <option value="LOS">LOS</option>
+                  <option value="NA">NA</option>
+                </select>
+                <div *ngIf="babyFinalForm.controls['final_diagnosis_eos_los'].invalid &&
+                          (babyFinalForm.controls['final_diagnosis_eos_los'].dirty ||
+                          babyFinalForm.controls['final_diagnosis_eos_los'].touched || submitted)" class="error-msg">
+                  <div *ngIf="babyFinalForm.controls['final_diagnosis_eos_los'].errors.required">
+                    This field is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="final_diagnosis_other">Diagnosis (Other)</label>
+                <div class="float-right">
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" [checked]="this.ifFinalDiagnosisOther"
+                        (click)="onInputChange($event)" value="1" name="FinalDiagnosisOther">Name
+                    </label>
+                  </div>
+                  <div class="form-check-inline mr-0">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" [checked]="!this.ifFinalDiagnosisOther"
+                        (click)="onInputChange($event)" value="2" name="FinalDiagnosisOther">NA
+                    </label>
+                  </div>
+                </div>
+                <input type="text" class="form-control" *ngIf="this.ifFinalDiagnosisOther" id="final_diagnosis_other"
+                  formControlName="final_diagnosis_other" min="0" [dropSpecialCharacters]="false" [patterns]="customPatterns" mask="S*" autocomplete="off">
+                <input type="text" value="NA" readonly *ngIf="!this.ifFinalDiagnosisOther" class="form-control">
+
+                <div *ngIf="babyFinalForm.controls['final_diagnosis_other'].invalid &&
+                          (babyFinalForm.controls['final_diagnosis_other'].dirty ||
+                          babyFinalForm.controls['final_diagnosis_other'].touched || submitted)" class="error-msg">
+                  <div *ngIf="babyFinalForm.controls['final_diagnosis_other'].errors.required">
+                    This field is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" *ngIf="!isEditClicked" class="btn btn-primary float-right">Done
+          </button>
+          <button type="button" *ngIf="isEditClicked" (click)="update_final_form()" class="btn btn-primary float-right">Update
+          </button>
+        </div>
+      </form>
+    </div>
+    <!-- <div *ngIf="responseArray?.length<1 && !isFinalEdit">
+      <ng-container>
+          <div class="container">
+              <div class="row">
+                <div class="col-12 p-3">
+                   <div class="card py-3">
+                       <div class="card-body">
+                         <h5 class="card-title text-center alert alert-warning">No Record Found!!</h5>
+                   
+                       </div>
+                       <img src="assets/svgs/Instructions.png" class="card-img-top w-75 mx-auto" alt="...">
+                     </div>
+                </div>
+              </div>
+            </div>
+      </ng-container>
+    </div> -->
+    <!-- Remind Passowrd -->
+    <ng-template #saveReadingContent let-c="close" let-d="dismiss">
+      <form class="form-css" novalidate>
+        <!-- <div class="modal-header custom-modal-header add-btn">
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click');close()">
+            <span aria-hidden="true">&times;</span>
+    
+          </button>
+        </div> -->
+          <!-- <form [formGroup]="generalForm" class="form-css-modal" (ngSubmit)="signup()" novalidate> -->
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group has-error has-danger ">
+                  <label  class="text-bold text-gray-900">Are you sure you want to save Reading?</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" (click)="saveReading()">Yes</button>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal"
+            (click)="d('Cross click');close()">No</button>
+            </div>
+      </form>
+    </ng-template>
+  </div>
+</div>
