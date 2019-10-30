@@ -32,8 +32,10 @@ before_script:
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 
-# script:
-#   - ng test --code-coverage --no-progress --browsers=ChromeHeadlessNoSandbox                         
+script:
+  # - ng test --code-coverage --no-progress --browsers=ChromeHeadlessNoSandbox   
+  # - ng test --watch=false --browsers=ChromeHeadless                      
+  - ng test --code-coverage --no-progress --browsers=ChromeHeadless                      
 
 after_script:
   - ./cc-test-reporter format-coverage -t lcov ./coverage/lcov.info
